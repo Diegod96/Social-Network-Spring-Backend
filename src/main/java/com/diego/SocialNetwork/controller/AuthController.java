@@ -1,6 +1,8 @@
 package com.diego.SocialNetwork.controller;
 
 
+import com.diego.SocialNetwork.dto.AuthenticationResponse;
+import com.diego.SocialNetwork.dto.LoginRequest;
 import com.diego.SocialNetwork.dto.RegisterRequest;
 import com.diego.SocialNetwork.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -26,6 +28,12 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", OK);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
+
     }
 
 
